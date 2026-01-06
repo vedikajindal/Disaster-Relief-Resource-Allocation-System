@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Supplies{% endblock %}
+{% block content %}
+<h3 style="color: white;">Supplies by Center</h3>
+{% for cid, items in supplies_grouped.items() %}
+  <div class="card card-bg mb-3 p-3">
+    <h5>Center ID: {{ cid }}</h5>
+    {% for it in items %}
+      <p><b>{{ it[1] }}</b> — Qty: {{ it[2] }} (Supply ID: {{ it[0] }})</p>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+<h3 class="mt-4">Inventory Status</h3>
+<div class="card card-bg p-3">
+  <table class="table">
+    <thead><tr><th>ID</th><th>Item</th><th>Qty</th><th>Center</th><th>Status</th></tr></thead>
+    <tbody>
+      {% for r in inventory_status %}
+      <tr class="{% if r[4] == 'LOW' %}low-row{% endif %}">
+        <td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td><td>{{ r[4] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

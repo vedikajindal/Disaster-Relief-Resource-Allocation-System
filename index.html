@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2 class="text-white mb-4">Dashboard Overview</h2>
+
+<div class="row g-4">
+
+  <div class="col-md-4">
+    <div class="card card-bg p-3 shadow">
+      <h5>Total Relief Centers</h5>
+      <h2>{{ centers_count }}</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-bg p-3 shadow">
+      <h5>Total Victims</h5>
+      <h2>{{ victims_count }}</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card card-bg p-3 shadow">
+      <h5>Total Supplies</h5>
+      <h2>{{ supplies_count }}</h2>
+    </div>
+  </div>
+
+</div>
+
+<div class="card card-bg p-4 mt-4 shadow">
+  <h4>Center Utilization</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Center ID</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Victims</th>
+        <th>Utilization (%)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cu in center_util %}
+      <tr>
+        <td>{{ cu[0] }}</td>
+        <td>{{ cu[1] }}</td>
+        <td>{{ cu[2] }}</td>
+        <td>{{ cu[3] }}</td>
+        <td>{{ cu[4] }}%</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  <div class="col-md-6" style="margin: 20px;">
+    <div class="card card-bg p-3 shadow">
+      <h4>Recent Allocations</h4>
+
+      {% if allocation_logs %}
+        <ul class="list-group">
+          {% for a in allocation_logs %}
+            <li class="list-group-item">
+              {{ a[0] }} — {{ a[1] }} : {{ a[2] }} ({{ a[3] }})
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-muted">No recent allocations.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="card card-bg p-4 mt-4 shadow">
+
+  <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: nowrap;">
+
+      <form method="post" action="{{ url_for('run_allocate') }}">
+          <button class="btn btn-primary" style="background-color: rgb(1, 1, 54);">Compute Weighted Allocation</button>
+      </form>
+
+      <form method="post" action="{{ url_for('run_distribute') }}">
+          <button class="btn btn-warning" style="background-color: rgb(1, 1, 54); color: white;">Distribute Supplies</button>
+      </form>
+
+      <form method="post" action="{{ url_for('run_report') }}">
+          <button class="btn btn-success" style="background-color: rgb(1, 1, 54);">Generate Disaster Report</button>
+      </form>
+
+      <form method="post" action="{{ url_for('run_check_inventory') }}">
+          <button class="btn btn-secondary" style="background-color: rgb(1, 1, 54);">Refresh Inventory</button>
+      </form>
+
+  </div>
+
+</div>
+
+
+{% endblock %}

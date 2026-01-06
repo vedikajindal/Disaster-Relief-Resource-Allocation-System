@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Allocation Logs{% endblock %}
+{% block content %}
+<h3 style="color: white;">Allocation Logs</h3>
+<div class="card card-bg p-3">
+  <table class="table table-sm">
+    <thead><tr><th>Region</th><th>Item</th><th>Qty</th><th>Time</th></tr></thead>
+    <tbody>
+      {% for a in allocation_logs %}
+      <tr><td>{{ a[0] }}</td><td>{{ a[1] }}</td><td>{{ a[2] }}</td><td>{{ a[3] }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

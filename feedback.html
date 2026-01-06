@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Feedback{% endblock %}
+{% block content %}
+<h3 style="color: white;">Feedback</h3>
+{% for f in feedback_list %}
+  <div class="card card-bg mb-3 p-3">
+    <b>{{ f[0] }}</b> <small class="text-muted">({{ f[2] }})</small>
+    <p class="mb-0">{{ f[1] }}</p>
+  </div>
+{% endfor %}
+{% endblock %}

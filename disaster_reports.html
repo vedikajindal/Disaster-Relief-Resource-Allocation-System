@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Disaster Reports{% endblock %}
+{% block content %}
+<h3 style="color: white;">Disaster Reports</h3>
+<div class="card card-bg p-3">
+  <table class="table">
+    <thead><tr><th>Region</th><th>Victims</th><th>Total Demand</th><th>Supplies Avail</th><th>Time</th></tr></thead>
+    <tbody>
+      {% for r in report_logs %}
+      <tr><td>{{ r[0] }}</td><td>{{ r[1] }}</td><td>{{ r[2] }}</td><td>{{ r[3] }}</td><td>{{ r[4] }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Demands{% endblock %}
+{% block content %}
+<h3 style="color: white;">Regional Demands</h3>
+<div class="card card-bg p-3">
+  <table class="table">
+    <thead><tr><th>Region</th><th>Food</th><th>Water</th><th>Medical Kits</th></tr></thead>
+    <tbody>
+      {% for d in demands %}
+      <tr><td>{{ d[0] }}</td><td>{{ d[1] }}</td><td>{{ d[2] }}</td><td>{{ d[3] }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Centers{% endblock %}
+{% block content %}
+<h3 style="color:white">Relief Centers</h3>
+<div class="row">
+  {% for c in centers %}
+  <div class="col-md-4 mb-3">
+    <div class="card card-bg p-3">
+      <h5>{{ c[1] }}</h5>
+      <p><b>Location:</b> {{ c[2] }}</p>
+      <p><b>Capacity:</b> {{ c[3] }}</p>
+      {% for cu in center_util %}
+        {% if cu[0] == c[0] %}
+          <p><b>Victims:</b> {{ cu[3] }} <span style="color: black;" class="badge bg-info util-badge">{{ cu[4] }}%</span></p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

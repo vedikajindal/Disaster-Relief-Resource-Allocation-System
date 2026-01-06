@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Donations{% endblock %}
+{% block content %}
+<h3 style="color: white;">Donations</h3>
+<div class="card card-bg p-3">
+  <table class="table">
+    <thead><tr><th>Donor</th><th>Item</th><th>Amount</th><th>Date</th></tr></thead>
+    <tbody>
+      {% for d in donations %}
+      <tr><td>{{ d[0] }}</td><td>{{ d[1] }}</td><td>{{ d[2] }}</td><td>{{ d[3] }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Victims{% endblock %}
+{% block content %}
+<h3 style="color: white;">Victims by Region</h3>
+{% for region, victims in victims_grouped.items() %}
+  <div class="card card-bg mb-3 p-3">
+    <h5>{{ region }}</h5>
+    {% for v in victims %}
+      <p><b>{{ v[0] }}</b> — {{ v[2] }} — Age: {{ v[1] }}</p>
+    {% endfor %}
+  </div>
+{% endfor %}
+{% endblock %}
